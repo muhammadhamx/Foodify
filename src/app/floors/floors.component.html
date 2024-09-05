@@ -1,0 +1,285 @@
+<div class="floor-mai-view flex flex-col gap-4 p-4">
+  <div class="breadcrumbs text-sm">
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a>Floors</a></li>
+    </ul>
+  </div>
+
+  <div class="stats shadow w-full">
+    <div class="stat">
+      <div class="stat-figure text-primary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="inline-block h-8 w-8 stroke-current"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+          ></path>
+        </svg>
+      </div>
+      <div class="stat-title">Total Likes</div>
+      <div class="stat-value text-primary">25.6K</div>
+      <div class="stat-desc">21% more than last month</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="inline-block h-8 w-8 stroke-current"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          ></path>
+        </svg>
+      </div>
+      <div class="stat-title">Page Views</div>
+      <div class="stat-value text-secondary">2.6M</div>
+      <div class="stat-desc">21% more than last month</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <div class="avatar sticky online">
+          <div class="w-16 rounded-full">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="stat-value">86%</div>
+      <div class="stat-title">Tasks done</div>
+      <div class="stat-desc text-secondary">31 tasks remaining</div>
+    </div>
+  </div>
+  <div class="title-section w-full flex justify-between">
+    <h1>Floors</h1>
+
+    <div class="floor-actions">
+      <button
+        class="btn btn-outline btn-primary"
+        (click)="changeFormMode(true)"
+        onclick="my_modal_5.showModal()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+        Floor
+      </button>
+    </div>
+  </div>
+  <div class="overflow-x-auto flex flex-col gap-4">
+    @for (floor of floors; track $index) {
+    <div class="collapse collapse-arrow bg-base-200">
+      <input
+        type="radio"
+        name="my-accordion-2"
+        [checked]="$index == 0 ? 'checked' : ''"
+      />
+      <div class="collapse-title text-xl font-medium">
+        {{ floor.name }}
+      </div>
+      <div class="collapse-content">
+        <div class="w-full flex justify-between flex-row">
+          <p>{{ floor.description }}</p>
+          <br />
+          <!-- <h2 class="">Tables in Floor # 2</h2> -->
+          <button
+            class="btn btn-square btn-primary btn-outline"
+            (click)="changeFormMode(false,floor.id)"
+            onclick="my_modal_5.showModal()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="grid  auto-rows-max grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" >
+            @if (floor.tabels) {
+                @for (table of floor.tabels; track $index) {
+
+                    <div class="card bg-base-100 w-96 m-4 shadow-sm">
+                        <figure class="px-10 pt-10">
+                          <img
+                            src="https://www.picktime.com/webassets/2021/img/business/restaurants-hero.svg"
+                            alt="Shoes"
+                            class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-center text-center">
+                          <h2 class="card-title">{{table.name}}</h2>
+                          <p>{{table.description}}</p>
+                          <div class="card-actions">
+                            <button routerLink="/floors/table-detail" class="btn btn-circle btn-ghost btn-outline btn-sm btn-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                  </svg>
+                                  
+                              </button>
+                              <button class="btn btn-circle btn-ghost btn-warning btn-sm btn-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                  </svg>
+                                  
+                              </button>
+                              <button class="btn btn-circle btn-ghost btn-error btn-sm btn-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                  </svg>
+                                  
+                              </button>
+                          </div>
+                        </div>
+                      </div>
+                }
+            }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- Modal to add Floor -->
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        ✕
+      </button>
+    </form>
+    <h3 class="text-lg font-bold">Add {{ isFloorForm ? "Floor" : "Table" }}</h3>
+    <form [formGroup]="floorForm" action="">
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">Enter Floor Name</span>
+        </div>
+        <input
+          type="text"
+          formControlName="name"
+          [ngClass]="floorForm.controls['name'].touched && floorForm.controls['name'].errors?.['required'] ?'input-error':''"
+          [placeholder]="
+            isFloorForm ? 'Floor 1 or VIP Floor' : 'Table 1 or VIP Table'
+          "
+          class="input input-bordered w-full"
+        />
+      </label>
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">Description</span>
+        </div>
+        <textarea
+          class="textarea textarea-bordered"
+          [ngClass]="floorForm.controls['description'].touched && floorForm.controls['description'].errors?.['required'] ?'textarea-error':''"
+          formControlName="description"
+          placeholder="description"
+        ></textarea>
+      </label>
+
+      @if (!isFloorForm) {
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">Enter Table Sitting Capacity</span>
+        </div>
+        
+        <!-- [ngClass]="floorForm.controls['sittingCapacity'].touched && floorForm.controls['sittingCapacity'].errors?.['required'] ?'range-error':''" -->
+
+        <input
+          type="range"
+          min="2"
+          max="16"
+          formControlName="sittingCapacity"
+          class="range"
+          step="2"
+        />
+        <div class="flex w-full justify-between px-2 text-xs">
+          <span>2</span>
+          <span>4</span>
+          <span>6</span>
+          <span>8</span>
+          <span>10</span>
+          <span>12</span>
+          <span>14</span>
+          <span>16</span>
+        </div>
+      </label>
+      }
+    </form>
+    <div class="modal-action">
+      <form method="dialog" class="flex flex-row gap-4">
+        <button class="btn btn-warning btn-outline text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+          Close
+        </button>
+        <button
+          [disabled]="!floorForm.valid"
+          (click)="submitForm()"
+          class="btn btn-success btn-outline text-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          Add {{ isFloorForm ? "Floor" : "Table" }}
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>

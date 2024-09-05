@@ -1,0 +1,243 @@
+<div class="floor-mai-view flex flex-col gap-4 p-4">
+  <div class="breadcrumbs text-sm">
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a>Employees</a></li>
+    </ul>
+  </div>
+  <div class="stats shadow w-full">
+    <div class="stat">
+      <div class="stat-figure text-primary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="inline-block h-8 w-8 stroke-current"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+          ></path>
+        </svg>
+      </div>
+      <div class="stat-title">Total Likes</div>
+      <div class="stat-value text-primary">25.6K</div>
+      <div class="stat-desc">21% more than last month</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="inline-block h-8 w-8 stroke-current"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          ></path>
+        </svg>
+      </div>
+      <div class="stat-title">Page Views</div>
+      <div class="stat-value text-secondary">2.6M</div>
+      <div class="stat-desc">21% more than last month</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <div class="avatar sticky online">
+          <div class="w-16 rounded-full">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="stat-value">86%</div>
+      <div class="stat-title">Tasks done</div>
+      <div class="stat-desc text-secondary">31 tasks remaining</div>
+    </div>
+  </div>
+
+  <div class="title-section w-full flex justify-between">
+    <h1>Employees</h1>
+
+    <div class="floor-actions">
+      <button
+        class="btn btn-outline btn-primary"
+        onclick="my_modal_5.showModal()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+        Employee
+      </button>
+    </div>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="table">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th>
+            <label> # </label>
+          </th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- row 1 -->
+        @if (Employees.length) { @for (employee of Employees; track $index) {
+        <tr>
+          <th>
+            <label>
+              <!-- <input type="checkbox" class="checkbox" /> -->
+              {{ $index }}
+            </label>
+          </th>
+          <td>
+            <div class="flex items-center gap-3">
+              <div class="avatar">
+                <div class="mask mask-squircle h-12 w-12">
+                  <img
+                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                    alt="Avatar Tailwind CSS Component"
+                  />
+                </div>
+              </div>
+              <div>
+                <div class="font-bold">{{ employee.name }}</div>
+                <!-- <div class="text-sm opacity-50">{{employee.address || 'No address'}}</div> -->
+              </div>
+            </div>
+          </td>
+          <td>
+            {{ employee.role }}
+            <br />
+            <span class="badge badge-ghost badge-sm"
+              >Desktop Support Technician</span
+            >
+          </td>
+          <td>{{ employee.phoneNumber }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.address || "NA" }}</td>
+          <td>
+            @if (employee.status) {
+            <div class="badge badge-info gap-2">Active</div>
+
+            } @else {
+            <div class="badge badge-error gap-2">Deactivated</div>
+            }
+          </td>
+          <th>
+            <button class="btn btn-ghost btn-xs">details</button>
+          </th>
+        </tr>
+        } } @else {
+        <p>No Emplyees</p>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal to add Floor -->
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
+            </button>
+        </form>
+        <h3 class="text-lg font-bold">
+            {{ isAddEmployee ? "New" : "Update" }} Emmployee
+        </h3>
+        <form [formGroup]="employeeForm" action="">
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Name</span>
+                </div>
+                <input type="text" formControlName="name"
+                    [ngClass]="employeeForm.controls['name'].touched && employeeForm.controls['name'].errors?.['required'] ?'input-error':''"
+                    class="input input-bordered w-full" />
+            </label>
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Email</span>
+                </div>
+                <input type="text" formControlName="email"
+                    [ngClass]="employeeForm.controls['email'].touched && employeeForm.controls['email'].errors?.['required'] ?'input-error':''"
+                    class="input input-bordered w-full" />
+            </label>
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Phone</span>
+                </div>
+                <input type="text" formControlName="phoneNumber"
+                    [ngClass]="employeeForm.controls['phoneNumber'].touched && employeeForm.controls['phoneNumber'].errors?.['required'] ?'input-error':''"
+                    class="input input-bordered w-full" />
+            </label>
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Role</span>
+                </div>
+                    <select class="select select-bordered  w-full" formControlName="role"
+                    [ngClass]="employeeForm.controls['role'].touched && employeeForm.controls['role'].errors?.['required'] ?'input-error':''">
+                        <option value="waiter">Waiter</option>
+                        <option value="chef">Chef</option>
+                      </select>
+            </label>
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Role Description</span>
+                </div>
+                <textarea class="textarea textarea-bordered"
+                    [ngClass]="employeeForm.controls['roleDes'].touched && employeeForm.controls['roleDes'].errors?.['required'] ?'textarea-error':''"
+                    formControlName="roleDes" placeholder="Role Description"></textarea>
+            </label>
+        </form>
+        <div class="modal-action">
+            <form method="dialog" class="flex flex-row gap-4">
+                <button class="btn btn-warning btn-outline text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Close
+                </button>
+                <button [disabled]="!employeeForm.valid" (click)="submitForm()"
+                    class="btn btn-success btn-outline text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    {{ isAddEmployee ? "Add" : "Update" }} Emmployee
+                </button>
+            </form>
+        </div>
+    </div>
+</dialog>
