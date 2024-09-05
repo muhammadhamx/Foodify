@@ -1,4 +1,4 @@
-<div class="floor-mai-view flex flex-col gap-4 p-4">
+<div class="floor-main-view flex flex-col gap-4 p-4">
   <div class="breadcrumbs text-sm">
     <ul>
       <li><a routerLink="/">Home</a></li>
@@ -152,7 +152,7 @@
             }
           </td>
           <th>
-            <button class="btn btn-ghost btn-xs">details</button>
+            <button class="btn btn-ghost btn-xs" routerLink="/employees/employee-detail" (click)="viewDetails(employee)" [state]="{ data: employee }" >details</button>
           </th>
         </tr>
         } } @else {

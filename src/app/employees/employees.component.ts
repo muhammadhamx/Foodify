@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { User } from '../models/user.model';
+import { RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -66,6 +67,9 @@ export class EmployeesComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+  viewDetails(employee: any) {
+    console.log('Employee Data:', employee); 
+  }
   ngOnInit(): void {
     this.initForm()
   }
@@ -81,5 +85,6 @@ export class EmployeesComponent implements OnInit {
 
   submitForm() {
     console.log(this.employeeForm.value)
+    this.Employees.push(this.employeeForm.value)
   }
 }

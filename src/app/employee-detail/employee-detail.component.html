@@ -1,0 +1,48 @@
+<div class="employee-detail-main-view flex flex-col gap-4 p-4">
+    <div class="breadcrumbs text-sm">
+        <ul>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/employees">Employees</a></li>
+            <li><a>Employee Details</a></li>
+        </ul>
+    </div>
+    <div class="self-center mt-11">
+        <div class="card w-[90rem] mx-auto bg-base-100 shadow-xl ">
+            <div class="card-body bg-slate-200 flex flex-row ">
+                <div class="avatar">
+                    <div class="w-32 rounded-full ring ring-primary ring-offset-base-100">
+                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                            alt="Profile Picture" />
+                    </div>
+                </div>
+                <div class="pt-9">
+                    <h2 class="card-title pl-11">{{this.data.name}}</h2>
+                    <h3 class=" pl-11">{{this.data.email}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class=" flex flex-row place-content-evenly mt-11 ">
+            <div class="card  w-full ">
+                <div class="card-body">
+                  <h2 class="card-title">Email</h2>
+                  <p>{{this.data.email}}</p>
+                  <h2 class="card-title mt-7">Gender</h2>
+                  <p>{{this.data.gender}}</p>
+                  <h2 class="card-title mt-7">Role</h2>
+                  <p>{{this.data.role}}</p>
+                </div>
+              </div>
+              <div class="card w-full ">
+                  <div class="card-body">
+                    <h2 class="card-title mt-7">Phone Number</h2>
+                    <p>{{this.data.phoneNumber}}</p>
+                    <h2 class="card-title mt-7">Country</h2>
+                    <p>{{this.data.country}}</p>
+                    <h2 class="card-title mt-7">Role Description</h2>
+                    <p>{{this.data.description}}</p>
+                  </div>
+                </div>
+        </div>
+    </div>
+    <button class="btn w-24 btn-primary btn-xs sm:btn-sm md:btn-md ml-40 text-white mt-20" routerLink="/employees">⇐ &nbsp;Back</button>
+</div>
