@@ -5,6 +5,7 @@ import { TableDetailComponent } from './table-detail/table-detail.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { MenuComponent } from './menu/menu.component';
+import { CateringComponent } from './catering/catering.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
     {
         path:'menu',
         component:MenuComponent
+    },
+    {
+        path:'catering',
+        component:CateringComponent
     }
 ];
