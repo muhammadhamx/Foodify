@@ -25,7 +25,8 @@
                             <label class="label">
                                 <span class="label-text">Deal Name</span>
                             </label>
-                            <input type="text" placeholder="Enter deal name" class="input input-bordered"  [(ngModel)]="dealName" [ngModelOptions]="{standalone: true}"/>
+                            <input type="text" placeholder="Enter deal name" class="input input-bordered"
+                                [(ngModel)]="dealName" [ngModelOptions]="{standalone: true}" />
                         </div>
 
                         <!-- Deal Number -->
@@ -33,7 +34,8 @@
                             <label class="label">
                                 <span class="label-text">Deal Number</span>
                             </label>
-                            <input type="number" placeholder="Enter deal number" class="input input-bordered" [(ngModel)]="dealNumber" [ngModelOptions]="{standalone: true}"/>
+                            <input type="text" placeholder="Enter deal number" class="input input-bordered"
+                                [(ngModel)]="dealNumber" [ngModelOptions]="{standalone: true}" />
                         </div>
 
                         <!-- Deal Description -->
@@ -41,49 +43,9 @@
                             <label class="label">
                                 <span class="label-text">Deal Description</span>
                             </label>
-                            <textarea class="textarea textarea-bordered"
-                                placeholder="Enter deal description" [(ngModel)]="dealDescription" [ngModelOptions]="{standalone: true}"></textarea>
+                            <textarea class="textarea textarea-bordered" placeholder="Enter deal description"
+                                [(ngModel)]="dealDescription" [ngModelOptions]="{standalone: true}"></textarea>
                         </div>
-
-                        <!-- Search  -->
-                        <!-- <div>
-                            <label class="label">
-                                <span class="label-text">Create a Deal</span>
-                            </label>
-                            <input class="input input-bordered" type="text" placeholder="Search item..." [(ngModel)]="searchText" (input)="onSearch($event.target)" />
-                            <ul>
-                              <li *ngFor="let item of filteredItems">
-                                {{ item.name }} - {{ item.price }}
-                              </li>
-                            </ul>
-                          </div> -->
-
-
-
-
-                        <!-- Selected Items Table -->
-                        <!-- <table class="table w-full mt-4">
-                            <thead>
-                                <tr>
-                                    <th>Item</th>
-                                    <th>Quantity</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of selectedItems; let i = index">
-                                    <td>{{ item.name }}</td>
-                                    <td><input type="number" [(ngModel)]="item.quantity" min="1" class="input input-bordered w-16"></td>
-                                    <td><button (click)="removeItem(i)" class="btn btn-error">Remove</button></td>
-                                </tr>
-                            </tbody>
-                        </table> -->
-
-
-
-
-
-
 
                         <div>
                             <label class="label">
@@ -101,61 +63,67 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody >
+                                    <tbody>
                                         <!-- Loop through rows to display selected items -->
-                                        <tr *ngFor="let row of rows; let i = index">
+
+                                        @for (row of rows; track $index) {
+                                        <tr>
                                             <td>
-                                                <!-- Input to search and select an item, disabled when item is selected -->
-                                                <ng-container *ngIf="!rows[i].selectedItem">
-                                                    <input class="input input-bordered" type="text"
-                                                        placeholder="Search item..." [(ngModel)]="rows[i].searchText"
-                                                        (input)="onSearch($event.target, i)"
-                                                        [disabled]="rows[i].selectedItem !== null" />
-                                                    <ul>
-                                                        <li *ngFor="let item of filteredItems"
-                                                            (click)="selectItem(item, i)">
-                                                            {{ item.name }} - {{ item.price }}
-                                                        </li>
-                                                    </ul>
-                                                </ng-container>
-                                                <p class="font-bold" *ngIf="rows[i].selectedItem">{{
-                                                    rows[i].selectedItem?.name }}</p>
+                                                <p>{{row.name}}</p>
                                             </td>
                                             <td>
-                                                <!-- Input for quantity -->
                                                 <input class="input w-14" type="number" [(ngModel)]="row.quantity"
                                                     [ngModelOptions]="{standalone: true}"
-                                                    (input)="onInputChange($event.target , i)" />
+                                                    (input)="onInputChange($event.target , $index)" />
                                             </td>
-                                            <td>{{ rows[i].totalPrice || '0$' }}</td>
+                                            <td>{{ rows[$index].totalPrice || '0$' }}</td>
                                             <td>
-                                                <!-- Delete icon to remove the row -->
-                                                <button class="btn btn-outline" (click)="deleteRow(i)">
+                                                <button class="btn btn-outline" (click)="deleteRow($index)">
                                                     🗑️
                                                 </button>
                                             </td>
                                         </tr>
+                                        }
+
+
+                                        <tr style="position: fixed;">
+                                            <div class="dropdown">
+                                                <input type="text" tabIndex="0" (input)="onSearch($event.target)"
+                                                    [(ngModel)]="searchItemTxt" [ngModelOptions]="{standalone: true}"
+                                                    placeholder="Search Items...."
+                                                    class="input input-bordered w-full bg-base-100" />
+                                                <ul tabindex="0"
+                                                    class="dropdown-content dropdown-open menu p-2 shadow bg-base-100 rounded-box w-52">
+                                                    @if (filteredItems.length) {
+                                                    @for (item of filteredItems; track $index) {
+                                                    <li (click)="selectItem(item)">
+                                                        <span> {{ item.name }} - {{ item.price }} $</span>
+                                                    </li>
+
+                                                    }
+                                                    } @else {
+                                                    <li>
+                                                        Not Found
+                                                    </li>
+                                                    }
+
+
+
+                                                </ul>
+                                            </div>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            
-                            <!-- Button to add new row -->
-                            <button class="btn btn-primary mt-4" (click)="addRow()">Add Item</button>
-                            <!-- Display total price -->
+
                             <div class="mt-16">
                                 <p class="text-xl font-bold">Total Price: {{ grandTotal || '0$' }}</p>
-                                <input class="input input-bordered mt-2" type="number" placeholder="Enter Discounted Price..."
-                                [(ngModel)]="userPrice" [ngModelOptions]="{standalone: true}" (input)="updateWithUserPrice()"/>
+                                <input class="input input-bordered mt-2" type="text"
+                                    placeholder="Enter Discounted Price..." [(ngModel)]="userPrice"
+                                    [ngModelOptions]="{standalone: true}" />
                             </div>
 
                         </div>
-
-
-
-
-
-
-
 
                         <!-- Submit Button -->
                         <div class="form-control mt-6">
@@ -171,104 +139,33 @@
 
 <div class=" flex w-full place-content-between gap-12 mt-10 ">
     @if (deals.length) {
-        @for (deal of deals; track $index) {
-            <div class="card bg-base-100 w-96 shadow-xl">
-                <figure>
-                    <img src="../../assets/images/items/burger.jpg" alt="Shoes" />
-                </figure>
-                <div class="card-body">
-                    <div class="flex flex-row place-content-between">
-                        <h2><span class="font-bold">Name: </span> <br>{{deal.name}}</h2>
-                        <h2><span class="font-bold">No: </span> {{deal.number}}</h2>
-                    </div>
-                    <div class="flex flex-row place-content-between">
-                        <h2><span class="font-bold pr-20">Description: </span> <br> {{deal.description}} </h2>
-                        <h2><span class="font-bold">End-Date: </span> {{deal.endDate || "NA"}}</h2>
-                    </div>
-                    <p class="flex py-7"><span class="font-bold">Price: </span> {{deal.discountedPrice}}</p>
-        
-                    <div class="card-actions justify-between">
-                        <button class="btn btn-outline btn-success w-20">Edit</button>
-                        <button class="btn btn-outline btn-primary w-20">View</button>
-                        <button class="btn btn-outline btn-error w-20">Delete </button>
-                    </div>
-                </div>
+    @for (deal of deals; track $index) {
+    <div class="card bg-base-100 w-96 shadow-xl">
+        <figure>
+            <img src="../../assets/images/items/burger.jpg" alt="Shoes" />
+        </figure>
+        <div class="card-body">
+            <div class="flex flex-row place-content-between">
+                <h2><span class="font-bold">Name: </span> <br>{{deal.name}}</h2>
+                <h2><span class="font-bold">No: </span> {{deal.number}}</h2>
             </div>
+            <div class="flex flex-row place-content-between">
+                <h2><span class="font-bold pr-20">Description: </span> <br> {{deal.description}} </h2>
+                <h2><span class="font-bold">End-Date: </span> {{deal.endDate || "NA"}}</h2>
+            </div>
+            <p class="flex py-7"><span class="font-bold">Price: </span> {{deal.discountedPrice}}</p>
 
-        }
+            <div class="card-actions justify-between">
+                <button class="btn btn-outline btn-success w-20">Edit</button>
+                <button class="btn btn-outline btn-primary w-20">View</button>
+                <button class="btn btn-outline btn-error w-20">Delete </button>
+            </div>
+        </div>
+    </div>
+
+    }
     }
     @else {
-        <span>No Deals Right now</span>
+    <span>No Deals Right now</span>
     }
-    <!-- <div class="card bg-base-100 w-96 shadow-xl">
-        <figure>
-            <img src="../../assets/images/items/burger.jpg" alt="Shoes" />
-        </figure>
-        <div class="card-body">
-            <div class="flex flex-row place-content-between">
-                <h2><span class="font-bold">Name: </span> <br> Deal 1</h2>
-                <h2><span class="font-bold">No: </span> 1001</h2>
-            </div>
-            <div class="flex flex-row place-content-between">
-                <h2><span class="font-bold pr-20">Description: </span> <br> Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. </h2>
-                <h2><span class="font-bold">End-Date: </span> 12-sep</h2>
-            </div>
-            <p class="flex py-7"><span class="font-bold">Price: </span> $200</p>
-
-            <div class="card-actions justify-between">
-                <button class="btn btn-outline btn-success w-20">Edit</button>
-                <button class="btn btn-outline btn-primary w-20">View</button>
-                <button class="btn btn-outline btn-error w-20">Delete </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card bg-base-100 w-96 shadow-xl">
-        <figure>
-            <img src="../../assets/images/items/burger.jpg" alt="Shoes" />
-        </figure>
-        <div class="card-body">
-            <div class="flex flex-row place-content-between">
-                <h2><span class="font-bold">Name: </span> <br> Deal 1</h2>
-                <h2><span class="font-bold">No: </span> 1001</h2>
-            </div>
-            <div class="flex flex-row place-content-between">
-                <h2><span class="font-bold pr-20">Description: </span> <br> Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. </h2>
-                <h2><span class="font-bold">End-Date: </span> 12-sep</h2>
-            </div>
-            <p class="flex py-7"><span class="font-bold">Price: </span> $200</p>
-
-            <div class="card-actions justify-between">
-                <button class="btn btn-outline btn-success w-20">Edit</button>
-                <button class="btn btn-outline btn-primary w-20">View</button>
-                <button class="btn btn-outline btn-error w-20">Delete </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card bg-base-100 w-96 shadow-xl">
-        <figure>
-            <img src="../../assets/images/items/burger.jpg" alt="Shoes" />
-        </figure>
-        <div class="card-body">
-            <div class="flex flex-row place-content-between">
-                <h2><span class="font-bold">Name: </span> <br> Deal 1</h2>
-                <h2><span class="font-bold">No: </span> 1001</h2>
-            </div>
-            <div class="flex flex-row place-content-between">
-                <h2><span class="font-bold pr-20">Description: </span> <br> Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. </h2>
-                <h2><span class="font-bold">End-Date: </span> 12-sep</h2>
-            </div>
-            <p class="flex py-7"><span class="font-bold">Price: </span> $200</p>
-
-            <div class="card-actions justify-between">
-                <button class="btn btn-outline btn-success w-20">Edit</button>
-                <button class="btn btn-outline btn-primary w-20">View</button>
-                <button class="btn btn-outline btn-error w-20">Delete </button>
-            </div>
-        </div>
-    </div> -->
 </div>
