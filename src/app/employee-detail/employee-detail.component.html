@@ -1,12 +1,33 @@
-<div class="employee-detail-main-view flex flex-col gap-4 p-4">
-    <div class="breadcrumbs text-sm">
-        <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/employees">Employees</a></li>
-            <li><a>Employee Details</a></li>
-        </ul>
-    </div>
-    <div class="self-center mt-11">
+    <div class="floor-mai-view flex flex-col gap-4 p-4">
+        <div class="flex justify-between items-center">
+          <!-- Breadcrumbs -->
+          <div class="breadcrumbs text-sm">
+            <ul>
+                <li><a routerLink="/">Home</a></li>
+                <li><a routerLink="/employees">Employees</a></li>
+                <li><a>Employee Details</a></li>
+            </ul>
+          </div>
+          
+          <!-- Branch Dropdown -->
+          <div class="dropdown">
+            <label tabindex="0" class="btn btn-outline m-1">Select Branch</label>
+            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+              <li>
+                <a> Branch 1 </a>
+              </li>
+              <li>
+                <a> Branch 2 </a>
+              </li>
+              <li>
+                <a> Branch 3 </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="self-center mt-11">
         <div class="card w-[90rem] mx-auto bg-base-100 shadow-xl ">
             <div class="card-body bg-slate-200 flex flex-row ">
                 <div class="avatar">

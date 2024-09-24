@@ -4,7 +4,7 @@
       <div class="breadcrumbs text-sm">
         <ul>
           <li><a routerLink="/">Home</a></li>
-          <li><a>Menu</a></li>
+          <li><a>Sales</a></li>
         </ul>
       </div>
       
@@ -66,42 +66,67 @@
             <div class="stat-desc text-secondary">31 tasks remaining</div>
         </div>
     </div>
+    <div class="flex justify-between">
+        <h1 class="font-bold text-3xl ">Sales</h1>
+    </div>
 
-        <!------------------------------------------------ First Tab ----------------------------------------------->
-    <div role="tablist" class="tabs tabs-lifted">
-        <input type="radio" name="my_tabs_2" role="tab" class="tab " aria-label="Items" checked="checked" />
-        <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-9 ">
-
-
-            <div class=" mt-15">
-
-                <app-items></app-items>
-
-               
-            </div>
-
-
+    <div class=" flex flex-row justify-between">
+        <div class=" w-1/2">
+            <canvas id="lineChart"></canvas>
         </div>
-
-        <!------------------------------------------------ Second Tab ----------------------------------------------->
-        <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Deals" />
-        <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-
-
-            <div class=" mt-15">
-                <app-deals></app-deals>
-            </div>
-
-
+        <div class=" w-1/2">
+            <canvas id="polarChart"></canvas>
         </div>
+    </div>
 
-        <!-- <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 3" />
-        <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-            Tab content 3
-        </div> -->
+    <div class="mt-24 flex flex-row justify-between items-center">
+        <h1 class="font-bold text-3xl ">Table Title</h1>
+        <div class="flex flex-row space-x-14 items-end">
+            <div>
+                <h1 class="">Start Date</h1>
+                <input type="date" class="input input-bordered w-full max-w-xs" [(ngModel)]="startDate">
+            </div>
+            <div>
+                <h1 class="">End Date</h1>
+                <input type="date" class="input input-bordered w-full max-w-xs" [(ngModel)]="endDate"> 
+            </div>
+             <button class="btn btn-outline" (click)="filterData()">Fetch Data</button>
+        </div>
+    </div>
+    <div class="overflow-x-auto mt-7">
+        <table class="table">
+            <!-- head -->
+            <thead class="text-black font-extrabold">
+                <tr >
+                    <th >
+                        <label> # </label>
+                    </th>
+                    <th>Order ID</th>
+                    <th>Total Price</th>
+                    <th>Items</th>
+                    <th>Payment Type</th>
+                    <th>Employee ID</th>
+                    <th>Order Date</th>
+                    <th>Last Updated</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (i of filteredData; track $index) {
+                   <tr>
+                    <td>{{$index +1}}</td>
+                    <td>{{i.orderId}}</td>
+                    <td>{{i.totalPrice}}</td>
+                    <td>{{i.items}}</td>
+                    <td>{{i.paymentType}}</td>
+                    <td>{{i.employeeId}}</td>
+                    <td>{{i.orderDate}}</td>
+                    <td>{{i.lastUpdated}}</td>
+                   </tr> 
+                }
+            </tbody>
+        </table>
     </div>
 
 
-
-
-   
+ 

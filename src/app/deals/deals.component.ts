@@ -28,7 +28,7 @@ export class DealsComponent implements OnInit {
     { pic: '../../assets/images/items/burger.jpg', id: '1', name: 'burger', price: 200 },
     { pic: '../../assets/images/items/burger.jpg', id: '2', name: 'pizza', price: 800 },
     { pic: '../../assets/images/items/burger.jpg', id: '3', name: 'pasta', price: 200 },
-    { pic: '../../assets/images/items/burger.jpg', id: '4', name: 'biryani', price: 800 }
+    { pic: '../../assets/images/items/burger.jpg', id: '4', name: 'biryani', price: 800 },
   ];
 
   dealName: string = '';

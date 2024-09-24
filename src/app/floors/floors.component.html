@@ -1,10 +1,30 @@
 <div class="floor-mai-view flex flex-col gap-4 p-4">
-  <div class="breadcrumbs text-sm">
-    <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a>Floors</a></li>
-    </ul>
+  <div class="flex justify-between items-center">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a>Floors</a></li>
+      </ul>
+    </div>
+    
+    <!-- Branch Dropdown -->
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-outline m-1">Select Branch</label>
+      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li>
+          <a> Branch 1 </a>
+        </li>
+        <li>
+          <a> Branch 2 </a>
+        </li>
+        <li>
+          <a> Branch 3 </a>
+        </li>
+      </ul>
+    </div>
   </div>
+
 
   <div class="stats shadow w-full">
     <div class="stat">
@@ -93,6 +113,7 @@
   </div>
   <div class="overflow-x-auto flex flex-col gap-4">
     @for (floor of floors; track $index) {
+      
     <div class="collapse collapse-arrow bg-base-200">
       <input
         type="radio"
