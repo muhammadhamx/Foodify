@@ -26,123 +26,29 @@
   </div>
 </div>
 
-  <div class="drawer drawer-mobile"> 
-    <!-- Drawer Content -->
-    <div class="drawer-content p-6">
-      <!-- Page Title -->
-      <h2 class="text-3xl font-bold mb-8">Settings</h2>
+  <div class="drawer-content p-6">
+    <!-- Page Title -->
+    <h2 class="text-3xl font-bold mb-8">Settings</h2>
 
-      <!-- Profile Settings -->
-      <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
-        <input type="checkbox" class="peer" />
-        <div class="collapse-title text-xl font-medium">
-          Change Profile
-        </div>
-        <div class="collapse-content">
-          <!-- Profile Form -->
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Profile Picture</span>
-            </label>
-            <input type="file" class="file-input file-input-bordered w-48" (change)="onProfilePictureChange($event)" />
-          </div>
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Full Name</span>
-            </label>
-            <input type="text" class="input input-bordered w-64" [(ngModel)]="profile.name" />
-          </div>
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Email</span>
-            </label>
-            <input type="email" class="input input-bordered w-64" [(ngModel)]="profile.email" />
-          </div>
-          <div class="card-actions justify-end mt-4">
-            <button class="btn btn-primary" (click)="updateProfile()">Update Profile</button>
-          </div>
-        </div>
-      </div>
+    <div class="grid gap-4">
+      <a routerLink="/settings/change-profile" class="border border-base-300 bg-base-100 rounded-box p-4 flex items-center justify-between hover:bg-gray-100 transition-all">
+        <span class="text-xl font-medium">Edit Profile</span>
+        <span class="material-icons">chevron_right</span> <!-- ">" Icon -->
+      </a>
 
-      <!-- Password Settings -->
-      <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mt-4">
-        <input type="checkbox" class="peer" />
-        <div class="collapse-title text-xl font-medium">
-          Change Password
-        </div>
-        <div class="collapse-content">
-          <!-- Password Form -->
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Current Password</span>
-            </label>
-            <input type="password" class="input input-bordered w-64" [(ngModel)]="password.currentPassword" />
-          </div>
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">New Password</span>
-            </label>
-            <input type="password" class="input input-bordered w-64" [(ngModel)]="password.newPassword" />
-          </div>
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Confirm New Password</span>
-            </label>
-            <input type="password" class="input input-bordered w-64" [(ngModel)]="password.confirmPassword" />
-          </div>
-          <div class="card-actions justify-end mt-4">
-            <button class="btn btn-primary" (click)="updatePassword()">Update Password</button>
-          </div>
-        </div>
-      </div>
+      <a routerLink="/settings/change-password" class="border border-base-300 bg-base-100 rounded-box p-4 flex items-center justify-between hover:bg-gray-100 transition-all">
+        <span class="text-xl font-medium">Change Password</span>
+        <span class="material-icons">chevron_right</span> <!-- ">" Icon -->
+      </a>
 
-      <!-- Forgot Password Settings -->
-      <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mt-4">
-        <input type="checkbox" class="peer" />
-        <div class="collapse-title text-xl font-medium">
-          Forgot Password
-        </div>
-        <div class="collapse-content">
-          <!-- Forgot Password Form -->
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Email</span>
-            </label>
-            <input type="email" class="input input-bordered w-64" [(ngModel)]="forgotPasswordEmail" />
-          </div>
-          <div class="card-actions justify-end mt-4">
-            <button class="btn btn-warning" (click)="sendResetLink()">Send Reset Link</button>
-          </div>
-        </div>
-      </div>
+      <a routerLink="/settings/forgot-password" class="border border-base-300 bg-base-100 rounded-box p-4 flex items-center justify-between hover:bg-gray-100 transition-all">
+        <span class="text-xl font-medium">Forgot Password</span>
+        <span class="material-icons">chevron_right</span> <!-- ">" Icon -->
+      </a>
 
-      <!-- Manage Branches -->
-      <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mt-4">
-        <input type="checkbox" class="peer" />
-        <div class="collapse-title text-xl font-medium">
-          Manage Restaurant Branches
-        </div>
-        <div class="collapse-content">
-          <!-- Branch Management Form -->
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Branch Name</span>
-            </label>
-            <input type="text" class="input input-bordered w-64" [(ngModel)]="branch.name" />
-          </div>
-          <div class="form-control mt-4">
-            <label class="label">
-              <span class="label-text">Branch Location</span>
-            </label>
-            <input type="text" class="input input-bordered w-64" [(ngModel)]="branch.location" />
-          </div>
-          <div class="card-actions justify-end mt-4">
-            <button class="btn btn-success" (click)="addBranch()">Add Branch</button>
-          </div>
-        </div>
-      </div>
+      <a routerLink="/settings/manage-branches" class="border border-base-300 bg-base-100 rounded-box p-4 flex items-center justify-between hover:bg-gray-100 transition-all">
+        <span class="text-xl font-medium">Manage Restaurant Branches</span>
+        <span class="material-icons">chevron_right</span> <!-- ">" Icon -->
+      </a>
     </div>
-
-
-
   </div>
