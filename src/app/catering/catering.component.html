@@ -1,216 +1,87 @@
 <div class="floor-mai-view flex flex-col gap-4 p-4">
-    <div class="flex justify-between items-center">
-      <!-- Breadcrumbs -->
-      <div class="breadcrumbs text-sm">
-        <ul>
-          <li><a routerLink="/">Home</a></li>
-          <li><a>Catering</a></li>
-        </ul>
+  <div class="flex justify-between items-center">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs text-sm">
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a>Catering</a></li>
+      </ul>
+    </div>
+
+    <!-- Branch Dropdown -->
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-outline m-1">Select Branch</label>
+      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li>
+          <a> Branch 1 </a>
+        </li>
+        <li>
+          <a> Branch 2 </a>
+        </li>
+        <li>
+          <a> Branch 3 </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stats shadow w-full">
+    <div class="stat">
+      <div class="stat-figure text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          class="inline-block h-8 w-8 stroke-current">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+          </path>
+        </svg>
       </div>
-      
-      <!-- Branch Dropdown -->
-      <div class="dropdown">
-        <label tabindex="0" class="btn btn-outline m-1">Select Branch</label>
-        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-          <li>
-            <a> Branch 1 </a>
-          </li>
-          <li>
-            <a> Branch 2 </a>
-          </li>
-          <li>
-            <a> Branch 3 </a>
-          </li>
-        </ul>
+      <div class="stat-title">Total Likes</div>
+      <div class="stat-value text-primary">25.6K</div>
+      <div class="stat-desc">21% more than last month</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          class="inline-block h-8 w-8 stroke-current">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        </svg>
+      </div>
+      <div class="stat-title">Page Views</div>
+      <div class="stat-value text-secondary">2.6M</div>
+      <div class="stat-desc">21% more than last month</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <div class="avatar sticky online">
+          <div class="w-16 rounded-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          </div>
+        </div>
+      </div>
+      <div class="stat-value">86%</div>
+      <div class="stat-title">Tasks done</div>
+      <div class="stat-desc text-secondary">31 tasks remaining</div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="">
+    <div role="tablist" class="tabs tabs-boxed ">
+      <input type="radio" name="my_tabs_1" role="tab" class="tab tab-lg whitespace-nowrap " aria-label="Dine-in" checked="checked" />
+      <div role="tabpanel" class="tab-content p-10 ">
+        <app-dine-in></app-dine-in>
+      </div>
+
+      <input type="radio" name="my_tabs_1" role="tab" class="tab tab-lg whitespace-nowrap" aria-label="Take Away" />
+      <div role="tabpanel" class="tab-content p-10">
+        <app-take-away></app-take-away>
+      </div>
+
+      <input type="radio" name="my_tabs_1" role="tab" class="tab tab-lg whitespace-nowrap" aria-label="Home Delivery" />
+      <div role="tabpanel" class="tab-content p-10">
+        <app-home-delivery></app-home-delivery>
       </div>
     </div>
-
-    <div class="stats shadow w-full">
-        <div class="stat">
-            <div class="stat-figure text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    class="inline-block h-8 w-8 stroke-current">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                    </path>
-                </svg>
-            </div>
-            <div class="stat-title">Total Likes</div>
-            <div class="stat-value text-primary">25.6K</div>
-            <div class="stat-desc">21% more than last month</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-figure text-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    class="inline-block h-8 w-8 stroke-current">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-            </div>
-            <div class="stat-title">Page Views</div>
-            <div class="stat-value text-secondary">2.6M</div>
-            <div class="stat-desc">21% more than last month</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-figure text-secondary">
-                <div class="avatar sticky online">
-                    <div class="w-16 rounded-full">
-                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-            </div>
-            <div class="stat-value">86%</div>
-            <div class="stat-title">Tasks done</div>
-            <div class="stat-desc text-secondary">31 tasks remaining</div>
-        </div>
-    </div>
-
-    <div class=" flex justify-end ">
-        <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-outline m-1" (click)="toggleDropdown()">{{ selectedFloor||
-                'Select foor'
-                }}</div>
-            @if(dropdownOpen){
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                <!-- <li><a>Item 1</a></li>
-              <li><a>Item 2</a></li> -->
-
-                @for (item of floors; track $index) {
-                <li><a (click)="selectFloor(item)">{{item}}</a></li>
-                }
-            </ul>
-            }
-        </div>
-    </div>
-
-    @switch (selectedFloor) {
-    @case ('Floor 1') {
-    <div class="flex flex-col w-44">
-        <div class="avatar indicator">
-            <span class="indicator-item badge badge-secondary">{{badge}}</span>
-            <div class="h-44 w-44 rounded-lg">
-                <img alt="Tailwind CSS examples"
-                    src="https://www.picktime.com/webassets/2021/img/business/restaurants-hero.svg" />
-            </div>
-        </div>
-        <div class="flex flex-row justify-center">
-            <button class="btn btn-outline" (click)="toggleBadge()">{{reserve? 'Reserve': 'Free'}}</button>
-            @if(!reserve){
-            <button class="btn btn-outline" onclick="my_modal_5.showModal()">View Order</button>
-            }
-        </div>
-    </div>
-
-    }
-    @case ('Floor 2') {
-    <div>floor 2</div>
-    }
-    @case ('Floor 3') {
-
-    <div>floor 3</div>
-    }
-    }
-
-
-
-
-
-
-
-
-    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-            <h3 class="text-lg font-bold">Add Orders</h3>
-            <!-- <label class="input input-bordered flex items-center gap-2 mt-9">
-                <input type="text" class="grow" placeholder="Search" [(ngModel)]="search1"
-                    (ngModelChange)="onSearch($event)" />
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
-                    class="h-4 w-4 opacity-70">
-                    <path fill-rule="evenodd"
-                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                        clip-rule="evenodd" />
-                </svg>
-            </label> -->
-
-
-            <div class="overflow-auto table-fixed">
-                <table class="table table-zebra">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Loop through rows to display selected items -->
-
-                        @for (row of rows; track $index) {
-                        <tr>
-                            <td>
-                                <p>{{row.name}}</p>
-                            </td>
-                            <td>
-                                <input class="input w-14" type="number" [(ngModel)]="row.quantity"
-                                    [ngModelOptions]="{standalone: true}"
-                                    (input)="onInputChange($event.target , $index)" />
-                            </td>
-                            <td>{{ rows[$index].totalPrice || '0$' }}</td>
-                            <td>
-                                <button class="btn btn-outline" (click)="deleteRow($index)">
-                                    🗑️
-                                </button>
-                            </td>
-                        </tr>
-                        }
-                        <tr style="position: fixed;">
-                            <div class="dropdown">
-                                <input type="text" tabIndex="0" (input)="onSearch($event.target)"
-                                    [(ngModel)]="searchItemTxt" [ngModelOptions]="{standalone: true}"
-                                    placeholder="Search Items...." class="input input-bordered w-full bg-base-100" />
-                                <ul tabindex="0"
-                                    class="dropdown-content dropdown-open menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    @if (filteredItems.length) {
-                                    @for (item of filteredItems; track $index) {
-                                    <li (click)="selectItem(item)">
-                                        <span> {{ item.name }} - {{ item.price }} $</span>
-                                    </li>
-                                    }
-                                    } @else {
-                                    <li>
-                                        Not Found
-                                    </li>
-                                    }
-                                </ul>
-                            </div>
-                        </tr>
-                    </tbody>
-                </table>
-                
-            </div>
-
-
-            <div class="mt-32">
-                <form >
-                    <button class="btn btn-outline btn-primary " [disabled]="orderPlaced">Add-on</button>
-                </form>
-                <p class="text-xl font-bold">Total Price: {{ grandTotal || '0$' }}</p>
-            </div>
-
-
-            <div class="modal-action">
-                <form method="dialog">
-                    <button class="btn btn-outline btn-error " [disabled]="orderPlaced">Cancel Order</button>
-                </form>
-                <form class="dialog">
-                    <button class="btn btn-outline btn-secondary " [disabled]="orderPlaced">Fullfil</button>
-                </form>
-                <form class="disabled">
-                    <button class="btn btn-outline" [disabled]="!orderPlaced">Edit</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
+  </div>

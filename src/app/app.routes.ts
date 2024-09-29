@@ -8,6 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CateringComponent } from './catering/catering.component';
 import { SalesComponent } from './sales/sales.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 export const routes: Routes = [
     {
@@ -45,5 +46,9 @@ export const routes: Routes = [
     {
         path:'settings',
         component:SettingsComponent
-    }
+    },
+    {
+        path:'set-profile',
+        component:TimelineComponent
+    },
 ];

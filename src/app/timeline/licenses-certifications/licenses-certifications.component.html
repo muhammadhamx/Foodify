@@ -1,0 +1,141 @@
+<div class="m-5 p-6 bg-white shadow-lg rounded-lg">
+    <div class="flex flex-col items-center">
+        <!-- Step Header -->
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold mb-2">Step 3: Licenses & Certifications</h2>
+            <p class="text-gray-600">Please provide the required licenses and certifications.</p>
+        </div>
+
+        <div class="w-full">
+            <form [formGroup]="licensesForm" (ngSubmit)="onSubmit()" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Business License -->
+                    <div class="form-control w-full">
+                        <label class="label" for="businessLicense">
+                            <span class="label-text font-semibold">Business License *</span>
+                        </label>
+                        <input id="businessLicense" type="text" placeholder="Enter Business License Number"
+                            class="input input-bordered w-full" formControlName="businessLicense" />
+                        @if (licensesForm.get('businessLicense')?.invalid &&
+                        licensesForm.get('businessLicense')?.touched) {
+                        <div class="text-error">
+                            Business License is required.
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Tax ID -->
+                    <div class="form-control w-full">
+                        <label class="label" for="taxId">
+                            <span class="label-text font-semibold">Tax ID *</span>
+                        </label>
+                        <input id="taxId" type="text" placeholder="Enter Tax ID" class="input input-bordered w-full"
+                            formControlName="taxId" />
+                        @if (licensesForm.get('taxId')?.invalid && licensesForm.get('taxId')?.touched) {
+                        <div class="text-error">
+                            Tax ID is required.
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Health & Safety Compliance -->
+                    <div class="form-control w-full">
+                        <label class="label" for="healthSafetyCompliance">
+                            <span class="label-text font-semibold">Health & Safety Compliance *</span>
+                        </label>
+                        <input id="healthSafetyCompliance" type="text"
+                            placeholder="Enter Health & Safety Compliance Number" class="input input-bordered w-full"
+                            formControlName="healthSafetyCompliance" />
+                        @if (licensesForm.get('healthSafetyCompliance')?.invalid &&
+                        licensesForm.get('healthSafetyCompliance')?.touched) {
+                        <div class="text-error">
+                            Health & Safety Compliance is required.
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Food Handling Certificate -->
+                    <div class="form-control w-full">
+                        <label class="label" for="foodHandlingCertificate">
+                            <span class="label-text font-semibold">Food Handling Certificate *</span>
+                        </label>
+                        <input type="file" class="file-input file-input-bordered w-full"
+                            formControlName="foodHandlingCertificate" accept="image/*,application/pdf" />
+                        @if (licensesForm.get('foodHandlingCertificate')?.invalid &&
+                        licensesForm.get('foodHandlingCertificate')?.touched) {
+                        <div class="text-error">
+                            Food Handling Certificate is required.
+                        </div>
+                        }
+                    </div>
+
+
+                    <!-- Insurance Certificate -->
+                    <div class="form-control w-full">
+                        <label class="label" for="insuranceCertificate">
+                            <span class="label-text font-semibold">Insurance Certificate *</span>
+                        </label>
+                        <input type="file" class="file-input file-input-bordered w-full"
+                            formControlName="insuranceCertificate" accept="image/*,application/pdf" />
+                        @if (licensesForm.get('insuranceCertificate')?.invalid &&
+                        licensesForm.get('insuranceCertificate')?.touched) {
+                        <div class="text-error">
+                            Insurance Certificate is required.
+                        </div>
+                        }
+                    </div>
+
+
+
+                    <!-- Alcohol Permit -->
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text font-semibold">Alcohol Permit *</span>
+                        </label>
+                        <div class="flex items-center">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="alcoholPermit" value="yes" formControlName="alcoholPermit"
+                                    (change)="onAlcoholPermitChange(true)" class="mr-2" />
+                                Yes
+                            </label>
+                            <label class="cursor-pointer pl-5">
+                                <input type="radio" name="alcoholPermit" value="no" formControlName="alcoholPermit"
+                                    (change)="onAlcoholPermitChange(false)" class="mr-2" />
+                                No
+                            </label>
+                        </div>
+                        @if (showAlcoholFile) {
+                        <div>
+                            <label class="label" for="alcoholFile">
+                                <span class="label-text font-semibold">Upload Alcohol Permit File *</span>
+                            </label>
+                            <input id="alcoholFile" type="file" class="file-input file-input-bordered w-full"
+                                formControlName="alcoholFile" accept="image/*,application/pdf" />
+                            @if (licensesForm.get('alcoholFile')?.invalid && licensesForm.get('alcoholFile')?.touched) {
+                            <div class="text-error">
+                                Alcohol Permit file is required.
+                            </div>
+                            } 
+                        </div>
+                        }
+                    </div>
+
+                </div>
+
+                <div class="flex flex-row justify-between">
+                    <div class="mt-6 text-start">
+                      <button class="btn btn-primary " (click)="goBackward()">
+                        Back
+                      </button>
+                    </div>
+                <!-- Submit Button -->
+                <div class="mt-6 text-end">
+                    <button type="submit" class="btn btn-primary" [disabled]="licensesForm.invalid">
+                        Next: Review & Sumbit
+                    </button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

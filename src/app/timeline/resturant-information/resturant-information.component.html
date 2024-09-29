@@ -1,0 +1,160 @@
+<div class="m-5 p-6 bg-white shadow-lg rounded-lg">
+  <div class="flex flex-col items-center">
+    <!-- Step Header -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold mb-2">Step 2: Restaurant Information</h2>
+      <p class="text-gray-600">Please provide your restaurant details.</p>
+    </div>
+
+    <div class="w-full">
+      <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Restaurant Name -->
+          <div class="form-control">
+            <label class="label" for="restaurantName">
+              <span class="label-text font-semibold">Restaurant Name</span>
+            </label>
+            <input id="restaurantName" type="text" placeholder="Enter restaurant name"
+              class="input input-bordered w-full" formControlName="restaurantName" />
+            @if (restaurantForm.get('restaurantName')?.invalid && restaurantForm.get('restaurantName')?.touched) {
+            <div class="text-error">
+              Restaurant Name is required.
+            </div>
+            }
+          </div>
+
+          <!-- Restaurant Phone Number -->
+          <div class="form-control">
+            <label class="label" for="restaurantPhoneNumber">
+              <span class="label-text font-semibold">Restaurant Phone Number</span>
+            </label>
+            <input id="restaurantPhoneNumber" type="tel" placeholder="Enter phone number"
+              class="input input-bordered w-full" formControlName="restaurantPhoneNumber" />
+            @if (restaurantForm.get('restaurantPhoneNumber')?.invalid &&
+            restaurantForm.get('restaurantPhoneNumber')?.touched) {
+            <div class="text-error">
+              Please enter a valid phone number.
+            </div>
+            }
+          </div>
+
+          <!-- Restaurant Email Address -->
+          <div class="form-control">
+            <label class="label" for="restaurantEmail">
+              <span class="label-text font-semibold">Restaurant Email Address</span>
+            </label>
+            <input id="restaurantEmail" type="email" placeholder="Enter email address"
+              class="input input-bordered w-full" formControlName="restaurantEmail" />
+            @if (restaurantForm.get('restaurantEmail')?.invalid && restaurantForm.get('restaurantEmail')?.touched) {
+            <div class="text-error">
+              Please enter a valid email address.
+            </div>
+            }
+          </div>
+
+          <!-- Cuisine Type -->
+          <div class="form-control">
+            <label class="label" for="cuisineType">
+              <span class="label-text font-semibold">Cuisine Type</span>
+            </label>
+            <input id="cuisineType" type="text" placeholder="e.g., Italian, Chinese, etc."
+              class="input input-bordered w-full" formControlName="cuisineType" />
+            @if (restaurantForm.get('cuisineType')?.invalid && restaurantForm.get('cuisineType')?.touched) {
+            <div class="text-error">
+              Cuisine Type is required.
+            </div>
+            }
+          </div>
+
+          <!-- Address -->
+          <div class="form-control md:col-span-2">
+            <label class="label" for="address">
+              <span class="label-text font-semibold">Address</span>
+            </label>
+            <input id="address" type="text" placeholder="Enter restaurant address" class="input input-bordered w-full"
+              formControlName="address" />
+            @if (restaurantForm.get('address')?.invalid && restaurantForm.get('address')?.touched) {
+            <div class="text-error">
+              Address is required.
+            </div>
+            }
+          </div>
+
+          <!-- City -->
+          <div class="form-control">
+            <label class="label" for="city">
+              <span class="label-text font-semibold">City</span>
+            </label>
+            <input id="city" type="text" placeholder="Enter city" class="input input-bordered w-full"
+              formControlName="city" />
+            @if (restaurantForm.get('city')?.invalid && restaurantForm.get('city')?.touched) {
+            <div class="text-error">
+              City is required.
+            </div>
+            }
+          </div>
+
+          <!-- State -->
+          <div class="form-control">
+            <label class="label" for="state">
+              <span class="label-text font-semibold">State</span>
+            </label>
+            <input id="state" type="text" placeholder="Enter state" class="input input-bordered w-full"
+              formControlName="state" />
+            @if (restaurantForm.get('state')?.invalid && restaurantForm.get('state')?.touched) {
+            <div class="text-error">
+              State is required.
+            </div>
+            }
+          </div>
+
+          <!-- ZIP Code -->
+          <div class="form-control">
+            <label class="label" for="zipCode">
+              <span class="label-text font-semibold">ZIP Code</span>
+            </label>
+            <input id="zipCode" type="text" placeholder="Enter ZIP code" class="input input-bordered w-full"
+              formControlName="zipCode" />
+            @if (restaurantForm.get('zipCode')?.invalid && restaurantForm.get('zipCode')?.touched) {
+            <div class="text-error">
+              ZIP Code is required.
+            </div>
+            }
+          </div>
+
+          <!-- Delivery Available -->
+          <div class="form-control md:col-span-2">
+            <label class="label">
+              <span class="label-text font-semibold">Delivery Available</span>
+            </label>
+            <input type="checkbox" class="toggle toggle-primary" formControlName="deliveryAvailable" />
+          </div>
+
+          <!-- Restaurant Description -->
+          <div class="form-control md:col-span-2">
+            <label class="label" for="restaurantDescription">
+              <span class="label-text font-semibold">Restaurant Description</span>
+            </label>
+            <textarea id="restaurantDescription" placeholder="Brief description of the restaurant"
+              class="textarea textarea-bordered w-full" formControlName="restaurantDescription"></textarea>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex flex-row justify-between">
+          <div class="mt-6 text-start">
+            <button class="btn btn-primary " (click)="goBackward()">
+              Back
+            </button>
+          </div>
+          <div class="mt-6 text-end">
+            <button type="submit" class="btn btn-primary " [disabled]="restaurantForm.invalid">
+              Next: Licenses & Certifications
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

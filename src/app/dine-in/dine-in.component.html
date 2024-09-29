@@ -1,0 +1,150 @@
+<div class=" flex justify-end ">
+    <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-outline m-1" (click)="toggleDropdown()">{{ selectedFloor||
+            'Select foor'
+            }}</div>
+        @if(dropdownOpen){
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <!-- <li><a>Item 1</a></li>
+          <li><a>Item 2</a></li> -->
+
+            @for (item of floors; track $index) {
+            <li><a (click)="selectFloor(item)">{{item}}</a></li>
+            }
+        </ul>
+        }
+    </div>
+</div>
+
+@switch (selectedFloor) {
+@case ('Floor 1') {
+ <div class="flex flex-row justify-between mt-16 flex-wrap">
+    @for(i of floor1; track $index){
+        <div class="flex flex-col w-48 m-11">
+    <div class="avatar indicator">
+        <span class="indicator-item badge badge-secondary">{{badge}}</span>
+        <div class="h-44 w-44 rounded-lg">
+            <img alt="Tailwind CSS examples"
+                src="https://www.picktime.com/webassets/2021/img/business/restaurants-hero.svg" />
+        </div>
+    </div>
+    <div class="flex flex-row justify-center">
+        <button class="btn btn-outline" (click)="toggleBadge()">{{reserve? 'Reserve': 'Free'}}</button>
+        @if(!reserve){
+        <button class="btn btn-outline" onclick="my_modal_5.showModal()">View Order</button>
+        }
+    </div>
+</div>
+}
+</div>
+}
+@case ('Floor 2') {
+<div>floor 2</div>
+}
+@case ('Floor 3') {
+
+<div>floor 3</div>
+}
+}
+
+
+
+
+
+
+
+
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Add Orders</h3>
+        <!-- <label class="input input-bordered flex items-center gap-2 mt-9">
+            <input type="text" class="grow" placeholder="Search" [(ngModel)]="search1"
+                (ngModelChange)="onSearch($event)" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                class="h-4 w-4 opacity-70">
+                <path fill-rule="evenodd"
+                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                    clip-rule="evenodd" />
+            </svg>
+        </label> -->
+
+
+        <div class="overflow-auto table-fixed">
+            <table class="table table-zebra">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through rows to display selected items -->
+
+                    @for (row of rows; track $index) {
+                    <tr>
+                        <td>
+                            <p>{{row.name}}</p>
+                        </td>
+                        <td>
+                            <input class="input w-14" type="number" [(ngModel)]="row.quantity"
+                                [ngModelOptions]="{standalone: true}"
+                                (input)="onInputChange($event.target , $index)" />
+                        </td>
+                        <td>{{ rows[$index].totalPrice || '0$' }}</td>
+                        <td>
+                            <button class="btn btn-outline" (click)="deleteRow($index)">
+                                🗑️
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                    <tr style="position: fixed;">
+                        <div class="dropdown">
+                            <input type="text" tabIndex="0" (input)="onSearch($event.target)"
+                                [(ngModel)]="searchItemTxt" [ngModelOptions]="{standalone: true}"
+                                placeholder="Search Items...." class="input input-bordered w-full bg-base-100" />
+                            <ul tabindex="0"
+                                class="dropdown-content dropdown-open menu p-2 shadow bg-base-100 rounded-box w-52">
+                                @if (filteredItems.length) {
+                                @for (item of filteredItems; track $index) {
+                                <li (click)="selectItem(item)">
+                                    <span> {{ item.name }} - {{ item.price }} $</span>
+                                </li>
+                                }
+                                } @else {
+                                <li>
+                                    Not Found
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+
+
+        <div class="mt-32">
+            <form >
+                <button class="btn btn-outline btn-primary " [disabled]="orderPlaced">Add-on</button>
+            </form>
+            <p class="text-xl font-bold">Total Price: {{ grandTotal || '0$' }}</p>
+        </div>
+
+
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn btn-outline btn-error " [disabled]="orderPlaced">Cancel Order</button>
+            </form>
+            <form class="dialog">
+                <button class="btn btn-outline btn-secondary " [disabled]="orderPlaced">Fullfil</button>
+            </form>
+            <form class="disabled">
+                <button class="btn btn-outline" [disabled]="!orderPlaced">Edit</button>
+            </form>
+        </div>
+    </div>
+</dialog>

@@ -1,0 +1,68 @@
+<div class="m-5 p-6 bg-white shadow-lg rounded-lg">
+    <div class="flex flex-col items-center">
+      <!-- Step Header -->
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-2">Review Your Details</h2>
+        <p class="text-gray-600">Please review your information before submitting.</p>
+      </div>
+  
+      <div class="w-full">
+        <form (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Owner Details Section -->
+          <div class="mb-4">
+            <h3 class="text-2xl font-semibold">Owner Details</h3>
+            <p><strong>Full Name:</strong> {{ ownerData.fullName }}</p>
+            <p><strong>Phone Number:</strong> {{ ownerData.phone }}</p>
+            <p><strong>Email Address:</strong> {{ ownerData.email }}</p>
+            <p><strong>Owner's Address:</strong> {{ ownerData.city }}, {{ ownerData.state }} {{ ownerData.zipCode }}</p>
+            <p><strong>Emergency Contact:</strong> {{ ownerData.emergencyContact }}</p>
+          </div>
+  
+          <!-- Restaurant Details Section -->
+          <div class="mb-4">
+            <h3 class="text-2xl font-semibold">Restaurant Details</h3>
+            <p><strong>Restaurant Name:</strong> {{ restaurantData.name }}</p>
+            <p><strong>Address:</strong> {{ restaurantData.address }}</p>
+            <p><strong>City:</strong> {{ restaurantData.city }}</p>
+            <p><strong>State:</strong> {{ restaurantData.state }}</p>
+            <p><strong>ZIP Code:</strong> {{ restaurantData.zipCode }}</p>
+            <p><strong>Cuisine Type:</strong> {{ restaurantData.cuisine }}</p>
+            <p><strong>Phone Number:</strong> {{ restaurantData.phone }}</p>
+            <p><strong>Email Address:</strong> {{ restaurantData.email }}</p>
+            <p><strong>Delivery Available:</strong> {{ restaurantData.deliveryAvailable ? 'Yes' : 'No' }}</p>
+            <p><strong>Description:</strong> {{ restaurantData.description }}</p>
+          </div>
+  
+          <!-- Licenses & Certifications Section -->
+          <div class="mb-4">
+            <h3 class="text-2xl font-semibold">Licenses & Certifications</h3>
+            <p><strong>Business License:</strong> {{ licensesData.businessLicense }}</p>
+            <p><strong>Tax ID:</strong> {{ licensesData.taxId }}</p>
+            <p><strong>Health & Safety Compliance:</strong> {{ licensesData.healthSafetyCompliance }}</p>
+            <p><strong>Food Handling Certificate:</strong> {{ licensesData.foodHandlingCertificate ? 'Uploaded' : 'Not Uploaded' }}</p>
+            <p><strong>Alcohol Permit:</strong> {{ licensesData.alcoholPermit === 'yes' ? 'Yes' : 'No' }}</p>
+            @if (licensesData.alcoholPermit === 'yes') {
+            <p><strong>Alcohol Permit File:</strong> {{ licensesData.alcoholFile ? 'Uploaded' : 'Not Uploaded' }}</p>
+            }
+            <p><strong>Insurance Certificate:</strong> {{ licensesData.insuranceCertificate ? 'Uploaded' : 'Not Uploaded' }}</p>
+            <p><strong>Business Plan:</strong> {{ licensesData.businessPlan ? 'Uploaded' : 'Not Uploaded' }}</p>
+          </div>
+  
+          <div class="flex flex-row justify-between">
+            <div class="mt-6 text-start">
+              <button class="btn btn-primary " (click)="goBackward()">
+                Back
+              </button>
+            </div>
+          <!-- Submit Button -->
+          <div class="mt-6 text-end">
+            <button type="submit" class="btn btn-primary ">
+              Submit Registration
+            </button>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

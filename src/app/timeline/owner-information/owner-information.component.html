@@ -1,0 +1,114 @@
+<div class="m-5 p-6 bg-white shadow-lg rounded-lg">
+  <div class="flex flex-col items-center">
+    <!-- Step Header -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold mb-2">Step 1: Owner Information</h2>
+      <p class="text-gray-600">Please provide your details to register your restaurant.</p>
+    </div>
+
+    <div class="w-full">
+      <form [formGroup]="ownerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Upload Photo -->
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text">Upload Photo</span>
+            </label>
+            <input type="file" class="file-input file-input-bordered w-full" formControlName="photo" accept="image/*" />
+            @if (ownerForm.get('photo')?.invalid && ownerForm.get('photo')?.touched) {
+            <div class="text-error">
+              Photo is required.
+            </div>
+            }
+          </div>
+
+          <!-- Full Name -->
+          <div class="form-control">
+            <label class="label" for="fullName">
+              <span class="label-text font-semibold">Full Name</span>
+            </label>
+            <input id="fullName" type="text" placeholder="Enter your full name" class="input input-bordered w-full"
+              formControlName="fullName" />
+            @if (ownerForm.get('fullName')?.invalid && ownerForm.get('fullName')?.touched) {
+            <div class="text-error">
+              Full Name is required.
+            </div>
+            }
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-control">
+            <label class="label" for="phoneNumber">
+              <span class="label-text font-semibold">Phone Number *</span>
+            </label>
+            <input id="phoneNumber" type="tel" placeholder="Enter phone number" class="input input-bordered w-full"
+              formControlName="phone" />
+            @if (ownerForm.get('phone')?.invalid && ownerForm.get('phone')?.touched) {
+            <div class="text-error">
+              Please enter a valid phone number.
+            </div>
+            }
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-control">
+            <label class="label" for="email">
+              <span class="label-text font-semibold">Email Address *</span>
+            </label>
+            <input id="email" type="email" placeholder="Enter email address" class="input input-bordered w-full"
+              formControlName="email" />
+            @if (ownerForm.get('email')?.invalid && ownerForm.get('email')?.touched) {
+            <div class="text-error">
+              Please enter a valid email.
+            </div>
+            }
+          </div>
+
+          <!-- Owner's Address -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-semibold">Owner's Address *</span>
+            </label>
+            <input type="text" placeholder="City" class="input input-bordered w-full" formControlName="city" />
+            @if (ownerForm.get('city')?.invalid && ownerForm.get('city')?.touched) {
+            <div class="text-error">
+              City is required.
+            </div>
+            }
+            <input type="text" placeholder="State" class="input input-bordered w-full mt-4" formControlName="state" />
+            @if ( ownerForm.get('state')?.invalid && ownerForm.get('state')?.touched) {
+            <div class="text-error">
+              State is required.
+            </div>
+            }
+            <input type="text" placeholder="Zip Code" class="input input-bordered w-full mt-4"
+              formControlName="zipCode" />
+
+
+          </div>
+
+          <!-- Emergency Contact Information -->
+          <div class="form-control">
+            <label class="label" for="emergencyContact">
+              <span class="label-text font-semibold">Emergency Contact Information</span>
+            </label>
+            <input id="emergencyContact" type="tel" placeholder="Emergency Contact Phone"
+              class="input input-bordered w-full" formControlName="emergencyContact" />
+            @if (ownerForm.get('emergencyContact')?.invalid && ownerForm.get('emergencyContact')?.touched) {
+            <div class="text-error">
+              Emergency contact is required.
+            </div>
+            }
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-6 text-end">
+          <button type="submit" class="btn btn-primary" [disabled]="ownerForm.invalid">
+            Next: Restaurant Information
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
