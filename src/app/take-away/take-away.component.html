@@ -1,1 +1,158 @@
-<p>take-away works!</p>
+<div class="flex w-full justify-end">
+  <button class="btn btn-outline" onclick="my_modal_4.showModal()" >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+    New Order
+  </button>
+</div>
+<div class="flex flex-row flex-wrap gap-6 mt-7">
+  @if(orders.length != 0){
+  @for (i of orders; track $index) {
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Client 1</h2>
+      <p>Name: {{i.personName}}</p>
+      <h2 class="card-title">Ordered Items</h2>
+
+      <div class="overflow-x-auto">
+        <table class="table table-xs table-pin-rows table-pin-cols">
+
+          <thead>
+            <th>#</th>
+            <th>Items</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th></th>
+          </thead>
+          <tbody>
+            @for (item of orderItems; track $index) {
+            <tr>
+              <td>{{$index+1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.price}}</td>
+              <td>{{item.quantity}}</td>
+              <td>{{item.totalPrice}}</td>
+            </tr>
+            }
+            <tr>
+              <td height=30 colspan=1></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <th>Total Price</th>
+              <td>{{grandTotal}}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary" onclick="my_modal_4.showModal()">Take Order</button>
+      </div>
+    </div>
+  </div>
+  }
+  }
+</div>
+
+
+<!-- Modal for Take Away Form -->
+<dialog id="my_modal_4" class="modal">
+  <div class="modal-box w-11/12 max-w-5xl">
+    <h3 class="font-bold text-lg">Take Away Order</h3>
+    <div class="takeaway-container flex flex-col gap-6 p-4">
+     
+      <form class="flex flex-row justify-around w-full">
+        <label class="input input-bordered flex items-center w-2/5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="h-4 w-4 opacity-70 mr-2">
+            <path
+              d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+          </svg>
+          <input type="text" name="name" class="grow" placeholder="Full Name" required />
+        </label>
+        <label class="input input-bordered flex items-center w-2/5">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 opacity-70 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          
+          <input type="tel" name="contact" class="grow" placeholder="Contact Number" required />
+        </label>
+      </form>
+      <!-- Search Menu -->
+      <div class="flex justify-center items-center">
+        <input type="text" placeholder="Search Items..." class="input input-bordered w-full max-w-md"
+          [(ngModel)]="searchItemTxt" (input)="onSearch(searchItemTxt)" />
+      </div>
+      <!-- Display Available Items -->
+      <div class="flex flex-row flex-wrap gap-4 justify-center">
+        @for (item of filteredItems; track $index) {
+        <div class="card w-44 bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">{{ item.name }}</h2>
+            <p>Price: {{ item.price }}$</p>
+            <button class="btn btn-outline btn-primary" (click)="addToOrder(item)">Add to Order</button>
+          </div>
+        </div>
+        }
+      </div>
+      <!-- Order Summary -->
+      <div class="order-summary p-4 bg-gray-100 rounded-lg shadow-lg">
+        <h3 class="text-xl font-bold mb-4">Order Summary</h3>
+        @if (orderItems.length > 0) {
+        <div>
+          <ul class="list-none space-y-4">
+            @for (item of orderItems; track $index) {
+            <li>
+              <div class="flex justify-between items-center">
+                <span>{{ item.name }} (x{{ item.quantity }})</span>
+                <span>{{ item.totalPrice }}$</span>
+                <button class="btn btn-outline btn-error btn-sm" (click)="removeFromOrder(item)">Remove</button>
+              </div>
+            </li>
+            }
+          </ul>
+          <div class="mt-6 text-lg">
+            <strong>Total: {{ grandTotal || '0$' }}</strong>
+          </div>
+          <button class="btn btn-primary mt-4" [disabled]="orderItems.length == 0" (click)="placeOrder()">Place
+            Order</button>
+        </div>
+        }
+        @if (orderItems.length == 0) {
+        <div class="text-center">
+          <p>Your cart is empty.</p>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+
+
+  </div>
+</dialog>
+
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>

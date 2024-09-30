@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-review-and-sumbmit',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './review-and-sumbmit.component.html',
   styleUrl: './review-and-sumbmit.component.scss'
 })

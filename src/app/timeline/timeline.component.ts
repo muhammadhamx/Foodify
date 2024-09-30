@@ -14,7 +14,7 @@ import { LicensesCertificationsComponent } from "./licenses-certifications/licen
 })
 export class TimelineComponent {
 
-  isOwnerDetailsCompleted = true;
+  isOwnerDetailsCompleted = false;
   isRestaurantDetailsCompleted = false;
   isContactInformationCompleted = false;
   
@@ -37,4 +37,6 @@ export class TimelineComponent {
   goBackTolicenses(){
     this.isContactInformationCompleted = false;
   } 
+
+  
 }
