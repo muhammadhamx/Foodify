@@ -41,6 +41,10 @@ Foodify is an innovative web application designed specifically for restaurants t
 *   Zone.js: For handling asynchronous operations.
 *   Karma: For unit testing.
 
+
+## Demo
+Check out the live demo of this project here: [Foodify](https://foodify-three.vercel.app)
+
 ## Installation
 
 Follow these steps to run the project locally:
@@ -48,7 +52,7 @@ Follow these steps to run the project locally:
 1.  Clone the repository:
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/muhammadhamx/Foodify.git
     ```
 
 2.  Navigate to the project directory:
@@ -131,7 +135,7 @@ This project is licensed under the MIT License.
 
 For any queries or suggestions, feel free to reach out:
 
-Email: [your.email@example.com]
-GitHub: [YourGitHubProfile]
+Email: muhammadhamzasajid6@gmail.com
+GitHub: muhammadhamx
 
 Thank you for using Foodify! We hope it enhances your dining experience.
